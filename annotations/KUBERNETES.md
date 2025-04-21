@@ -1,64 +1,105 @@
-# KUBERNETES (K8S)
+# 🧠 Kubernetes (K8s) - Comandos Esenciales y Estructuras
 
-## Comandos
+## 🚀 Comandos Básicos de Minikube
 
-| Comando                                                                       | Descripcion                                                                                           |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-|`minikube start`                                                               | Inicializar cluster minikube                                                                          |
-|`minikube delete`                                                              | Eliminar el cluster                                                                                   |
-|`minikube dashboard`                                                           | Abrir el dashboard del cluster                                                                        |
-|`kubectl get pods`                                                             | Visualizar los pods activos                                                                           |
-|`kubectl get nodes`                                                            | Visualizar los nodos activos                                                                          |
-|`kubectl run <nombre del pod> --image <imagen docker>`                         | Crear un pod pasandole una imagen de docker                                                           |
-|`kubectl describe pod <nombre del pod>`                                        | Ver descripcion detallada de un pod por su nombre                                                     |
-|`kubectl exec -it <nombre del pod> -- /bin/bash`                               | Ejecutar comando dentro de un pod por medio de bin bash                                               |
-|`kubectl exec pod/<nombre del pod> -- ls`                                      | Listar el contenido que tiene el pod                                                                  |
-|`kubectl logs <nombreDelPod>`                                                  | Listado de los logs que tiene el pod                                                                  |
-|`kubectl delete pod <nombrePod>`                                               | Eliminar un pod por su nombre                                                                         |
-|`kubectl apply -f <nombreDelArchivoYamlGenerado.yml>`                          | Crear un pod con base a la estructura del archivo yaml                                                |
-|`kubectl get pods -o wide`                                                     | Ver mas a detalle los pods creados                                                                    |
-|`kubectl get pods --selector <etiquetaNombre>=<nombre>`                        | Busca un pod por medio del nombre del laben definido                                                  |
-|`kubectl get pod --show-labels`                                                | Muestra todos los labels de los pods creados                                                          |
-|`kubectl label pod <nombrePod> <etiquetalabel=nombreLabel>`                    | Crearle un label a un pod por medio de CLI                                                            |
-|`kubectl label --overwrite pod <nombre pod> <etiquetalabel=nuevoNombre>`       | Cambiar el valor de la etiqueta de un pod                                                             |
-|`kubectl label pod <nombrePod> <nombreEtiqueta>-`                              | Eliminar el label de un pod                                                                           |
-|`kubectl get pods -l <etiquetaNombre>=<nombre>`                                | Busca un pod por medio del nombre del laben definido (con esta forma se abrevia el --selector con -l) |
-|`kubectl get pods -l '<etiqueta> in (valorEtiqueta1, valorEtiqueta.....)'`     | trae los pods que estan dentro de esa etiqueta y en ese grupo de valore                               |
-|`kubectl get pods -l '<etiqueta> notin (valorEtiqueta1, valorEtiqueta.....)'`  | trae los pods que no estan dentro de esa etiqueta ni en ese grupo de valores                          |
-|`kubectl get pods --selector <key1>=<value1> <keyN>=<valueN>`                  | Lista todos los pods por medio de un selector y pasar n veces una propiedad (label)|
-|`kubectl delete pods --selector app=backend `                                  | Elimina un pod por medio de un selector |
-|`kubectl get pods <nombre-pod> -o jsonpath='{.metadata.annotations}'`          | Lista todas las anotaciones de un pod en un formato json|
-|`kubectl annotate pod <nombre-pod> <propiedad>=<"valor">`                      | Crear una nueva anotacion por linea de comandos|
-|`kubectl annotate pod <nombre-pod> <propiedad>=<"valor"> --overwrite`          | Modificar una anotacion existente por linea de comandos|
-|`kubectl annotate pod <nombre-pod> <propiedad>-`                               | Eliminar una anotacion por su propiedad y el signo `-` posterior al nombre|
+| Comando                     | Descripción                                 |
+|----------------------------|---------------------------------------------|
+| `minikube start`           | Inicializa un clúster local de Minikube     |
+| `minikube delete`          | Elimina el clúster de Minikube              |
+| `minikube dashboard`       | Abre el dashboard gráfico del clúster       |
 
+---
 
+## 🔧 Gestión de Pods
 
-## Abreviatutas
-| --port | pasar puertos por comando |
-| ------ | ------------------------- |
-|        |                           |
+| Comando                                                         | Descripción                                                                 |
+|------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `kubectl get pods`                                              | Lista todos los pods activos                                               |
+| `kubectl get pods -o wide`                                      | Muestra los pods con información extendida                                 |
+| `kubectl get pod --show-labels`                                 | Muestra todos los labels de los pods                                       |
+| `kubectl describe pod <nombre-pod>`                             | Muestra los detalles completos de un pod específico                        |
+| `kubectl delete pod <nombre-pod>`                               | Elimina un pod por su nombre                                               |
+| `kubectl logs <nombre-pod>`                                     | Muestra los logs del pod                                                   |
+| `kubectl exec -it <nombre-pod> -- /bin/bash`                    | Abre una terminal bash dentro del pod                                      |
+| `kubectl exec pod/<nombre-pod> -- ls`                           | Lista archivos/directorios dentro del pod                                  |
 
+---
 
-## Estructura YAML
-apiVersion: v1
-kind: Pod
-metadata:
-  name: myapp
-  annotations: 
+## 🛠️ Crear Pods
+
+| Comando                                                              | Descripción                                                                 |
+|----------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| `kubectl run <nombre> --image <imagen-docker>`                       | Crea un pod a partir de una imagen Docker                                   |
+| `kubectl apply -f <archivo.yaml>`                                    | Crea/actualiza recursos con base en un archivo YAML                         |
+
+---
+
+## 🔍 Filtrar Pods por Labels
+
+| Comando                                                                                   | Descripción                                                                                     |
+|--------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| `kubectl get pods --selector <etiqueta>=<valor>`                                           | Filtra pods usando un selector (forma larga)                                                    |
+| `kubectl get pods -l <etiqueta>=<valor>`                                                   | Filtra pods usando un selector (forma corta)                                                    |
+| `kubectl get pods -l '<etiqueta> in (valor1, valor2)'`                                     | Muestra pods cuyo label esté dentro de una lista de valores                                     |
+| `kubectl get pods -l '<etiqueta> notin (valor1, valor2)'`                                  | Muestra pods cuyo label **no** esté dentro de una lista de valores                              |
+| `kubectl get pods --selector <key1>=<value1> <keyN>=<valueN>`                              | Aplica múltiples filtros por label                                                              |
+| `kubectl delete pods --selector <label>=<valor>`                                           | Elimina pods con base en un selector                                                            |
+
+---
+
+## 🏷️ Labels en Pods
+
+| Comando                                                                 | Descripción                                                      |
+|--------------------------------------------------------------------------|------------------------------------------------------------------|
+| `kubectl label pod <nombre> <etiqueta>=<valor>`                          | Asigna una etiqueta al pod                                       |
+| `kubectl label --overwrite pod <nombre> <etiqueta>=<nuevoValor>`        | Modifica una etiqueta existente                                  |
+| `kubectl label pod <nombre> <etiqueta>-`                                 | Elimina una etiqueta del pod                                     |
+
+---
+
+## 📝 Anotaciones (Annotations) en Pods
+
+| Comando                                                                 | Descripción                                                      |
+|--------------------------------------------------------------------------|------------------------------------------------------------------|
+| `kubectl get pods <nombre> -o jsonpath='{.metadata.annotations}'`       | Lista todas las anotaciones de un pod                           |
+| `kubectl annotate pod <nombre> <clave>=<"valor">`                       | Crea una anotación en el pod                                    |
+| `kubectl annotate pod <nombre> <clave>=<"valor"> --overwrite`          | Modifica una anotación existente                                |
+| `kubectl annotate pod <nombre> <clave>-`                                | Elimina una anotación                                            |
+
+---
+
+## 🔁 Abreviaturas Útiles
+
+| Opción     | Descripción                    |
+|------------|--------------------------------|
+| `--port`   | Permite mapear puertos         |
+
+---
+
+## 📄 Ejemplo de Estructura YAML (Pod)
+
+```yaml
+apiVersion: v1              # Versión de la API de Kubernetes que se usará
+kind: Pod                   # Tipo de recurso: Pod
+
+metadata:                   # Metadatos del pod
+  name: myapp               # Nombre del pod
+  annotations:              # Anotaciones informativas
     annotation1: "value"
     annotation2: "value"
     annotationN: "value"
-  labels:
+  labels:                   # Etiquetas para selección y filtrado
     name: myapp
-spec:
-  containers:
-  - name: myapp
-    image: <Image>
-    resources:
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
-    ports:
-      - containerPort: 9090
 
+spec:                       # Especificaciones del pod
+  containers:
+    - name: myapp           # Nombre del contenedor dentro del pod
+      image: <Image>        # Imagen Docker (ej. nginx:latest)
+
+      resources:            # Recursos asignados
+        limits:
+          memory: "128Mi"   # Memoria máxima: 128 MB
+          cpu: "500m"       # CPU máximo: 0.5 cores
+
+      ports:
+        - containerPort: 9090  # Puerto expuesto dentro del contenedor
