@@ -1,0 +1,26 @@
+🧭 Ruta de Aprendizaje: GraphQL con Java, Spring Boot y WebFlux
+📍 Etapa 1: Fundamentos de GraphQL (teoría y mindset)
+Qué es GraphQL y cómo se diferencia de REST
+Tipos de operaciones: Query, Mutation, Subscription
+Esquema vs. resolvers
+El tipo schema.graphqls y su importancia
+
+📍 Etapa 2: Proyecto base en Java
+Crear un proyecto Spring Boot con WebFlux
+Configurar GraphQL usando Spring Boot Starter
+Definir tu primer schema.graphqls
+Crear un @Component que actúe como resolver
+
+📍 Etapa 3: Conexión con PostgreSQL
+Crear entidades con JPA / R2DBC
+Exponer datos reales con GraphQL
+Consultas anidadas
+Validaciones y errores
+
+📍 Etapa 4: Mutaciones
+Crear datos desde GraphQL
+Actualizar y eliminar
+Buenas prácticas de diseño
+
+📍 Etapa 5: Subscriptions (más avanzado)
+Emitir eventos en tiempo real con Reactor + GraphQL
