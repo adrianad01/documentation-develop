@@ -1,0 +1,39 @@
+Ruta de Aprendizaje: Easy Rules + Java 21 + Spring Boot 3
+
+FASE 1 - Fundamentos de Easy Rules
+1. ¿Qué es Easy Rules y qué problema resuelve?
+2. Principios de diseño: reglas como objetos
+3. Componentes principales: Rule, RulesEngine, Facts
+4. Tipos de reglas: básicas, compuestas
+
+FASE 2 - Configuración del Proyecto
+5. Crear un proyecto base con Spring Boot 3 y Java 21
+6. Añadir Easy Rules como dependencia en Maven
+7. Primera regla con anotaciones: @Rule, @Condition, @Action
+
+FASE 3 - Uso del Motor de Reglas
+8. Crear e inyectar Facts (hechos)
+9. Ejecutar motor de reglas
+10. Prioridad de reglas y reglas condicionales
+11. Composición de reglas: RuleComposite
+
+FASE 4 - Casos Prácticos
+12. Validación de datos (Cliente, Usuario, etc.)
+13. Múltiples condiciones en una regla
+14. Reglas dinámicas con SpEL o JSON
+15. Encadenamiento de reglas
+
+FASE 5 - Integración con Spring WebFlux
+16. Crear un endpoint que dispare reglas desde HTTP
+17. Inyectar Facts desde un request
+18. Regresar resultado de la evaluación de reglas
+
+FASE 6 - Testing y Buenas Prácticas
+19. Testing de reglas con JUnit
+20. Pruebas unitarias vs integración
+21. Recomendaciones de diseño limpio con reglas
+
+Extras (Opcional)
+- Crear un RuleEngineManager centralizado
+- Registrar reglas en base de datos
+- Easy Rules + Drools (modo híbrido)
